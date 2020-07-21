@@ -1,0 +1,65 @@
+<div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-xl-3 col-md-10 mx-auto my-5" >
+                <div class="card card-body border-success rounded-2">
+                    <div class="my-3">
+                        <h4 class=" text-success font-weight-bolder text-center"> <strong> Login Form  </strong>  </h4>
+
+                        <form onsubmit="return doLogin(this);">
+
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">Email</label>
+                            <input type="email" class="form-control border-success" placeholder="Enter your Email" name="email" required />
+                          </div>
+    
+                          <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" placeholder="Enter your password" class="form-control border-success" name="password" required />
+                          </div>
+                          
+                          <button name="submit" type="submit" class="btn btn-success btn-block"> <strong>LOGIN</strong> </button>
+                        </form>
+
+                        <div class="my-1">
+                          <a href="/signup"> Don't have an account yet? <span class="text-primary">Signup</span></a>
+                        </div>
+
+                    </div>
+                </div>
+             </div>
+        </div>
+    </div>
+
+    <script>
+        function doLogin(form) {
+            form.submit.setAttribute("disabled", "disabled");
+            form.submit.innerHTML = "<span>Loading....</span>";
+
+            var ajax = new XMLHttpRequest();
+            ajax.open("POST", "/login", true);
+            ajax.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    form.submit.removeAttribute("disabled");
+                    form.submit.innerHTML = "<span>Login</span>";
+
+                    var response = JSON.parse(this.responseText);
+                    alert(response.message);
+
+                    if(response.status == "success"){
+                        var accessToken = response.accessToken;
+                        localStorage.setItem("accessToken", accessToken);
+                        if(response.profileImage == "") {
+                            window.location.href="/updateProfile";
+                        } else {
+                            window.location.href = "/"
+                        }
+                    } else {
+                        alert(response.message);
+                    }
+                }
+            }
+
+            ajax.send(new FormData(form));
+            return false;
+        }
+    </script>
