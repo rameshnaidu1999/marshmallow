@@ -25,3 +25,184 @@
     <ul class="setting-area">
 
 </ul>
+
+<%- include('./includes/header') %>
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-4">
+                <figure>
+					<img class="profile-image" id="profile-image" style="width:100%; height:150px; object-fit:cover;" />
+				</figure>
+                <form class="edit-photo" id="form-upload-image" onsubmit="return false;">
+                        <i class="fa fa-camera-retro"></i>
+                        <label class="fileContainer">
+                            Edit Display Photo
+						</label>
+						<input type="file" accept="image/*" name="profileImage" onchange="uploadImage();" required />
+                </form>		
+        </div>
+        <div class="col-md-6">
+            <figure>
+				<img class="cover-photo" id="cover-photo" style="width:100%; height:700px; object-fit:cover;">
+			</figure>
+            <form class="edit-phto" id="form-cover-photo" onsubmit="return false;" >
+                <i class="fa fa-camera-retro"></i>
+				<label class="fileContainer"> 
+					Edit cover Photo
+				</label>
+				<input type="file" accept="image/*" name="coverPhoto" onchange="uploadCoverPhoto();" required />
+
+            </form>
+        </div>
+    </div>
+    <div class="row">
+            <div class="col-md-10">
+                    <div class="timeline-info">
+                        <ul>
+                            <li class="admin-name">
+                                <h5 class="user-name" style="padding-top:20px; padding-bottom:20px;"></h5>
+                            </li>
+                        </ul>							
+                    </div>
+            </div>
+    </div>
+    
+</div>
+
+<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-3 col-xl-3 col-md-10 mx-auto my-5" >
+				<div class="card card-body border-success rounded-2">
+					<div class="my-3">
+						<h4 class=" text-success font-weight-bolder text-center"> <strong> Update Profile  </strong>  </h4>
+						<form onsubmit="return doUpdateProfile(this)">
+
+						  <div class="form-group">
+							<label for="exampleInputPassword1">FullName</label>
+							<input type="text"  class="form-control border-success" name="name" required />
+						  </div>
+
+						  <div class="form-group">
+							<label for="exampleInputPassword1">Username</label>
+							<input type="text"  class="form-control border-success" name="user-name" required />
+						  </div>
+
+						  <div class="form-group">
+							<label for="exampleInputEmail1">Email</label>
+							<input type="email" class="form-control border-success" name="email" required />
+						  </div>
+
+						  <div class="form-group">
+							<label for="exampleInputEmail1">City</label>
+							<input type="text" class="form-control border-success" name="city" required />
+						  </div>
+	
+						  <div class="form-group">
+							<label for="exampleInputEmail1">Country</label>
+							<input type="text" class="form-control border-success" name="country" required />
+						  </div>
+
+						  <div class="form-group">
+							<label for="exampleInputEmail1">DOB</label>
+							<input type="date" class="form-control border-success"  name="dob" required />
+						  </div>
+
+						  <div class="form-group">
+							<label for="exampleInputEmail1">About-me</label>
+							<input type="text" class="form-control border-success" name="about-me" required />
+						  </div>
+						  
+	
+						  <button type="submit" class="btn btn-success btn-block" name="submit"> <strong>SAVE</strong>  </button>
+						</form>
+		
+					</div>
+				</div>
+			 </div>
+		</div>
+</div>
+
+<script>
+		var isUpdateProfile = true;
+			function showProfileData(){
+				document.querySelector(".cover-photo").setAttribute("src", mainURL + "/" + window.user.coverPhoto);
+				document.querySelector(".profile-image").setAttribute("src", mainURL + "/" + window.user.profileImage);
+				document.querySelector(".user-name").innerHTML = window.user.name;
+				document.querySelector(".name").value = window.user.name;
+				document.querySelector(".email").value = window.user.email;
+				document.querySelector(".dob").value = window.user.dob;
+				document.querySelector(".city").value = window.user.city;
+				document.querySelector(".country").value = window.user.country;
+				document.querySelector(".aboutMe").value = window.user.aboutMe;
+			}showProfileData();
+			
+		function uploadCoverPhoto(form){
+			var form = document.getElementById("form-cover-photo");
+			
+			var ajax = new XMLHttpRequest();
+			ajax.open("POST", "/uploadCoverPhoto", true);
+			
+			ajax.onreadystatechange = function(){
+				if(this.readyState == 4 && this.status == 200){
+					var response = JSON.parse(this.responseText);
+					document.getElementById("cover-photo").setAttribute("src", response.data);
+				}
+			};
+			
+			var formData = new FormData(form);
+			formData.append("accessToken", localStorage.getItem("accessToken"));
+			ajax.send(formData);
+			
+			return false;
+		}
+		
+		function uploadImage(form){
+			var form = document.getElementById("form-upload-image");
+			
+			var ajax = new XMLHttpRequest();
+			ajax.open("POST", "/uploadProfileImage", true);
+			
+			ajax.onreadystatechange = function(){
+				if(this.readyState == 4 && this.status == 200){
+				
+					var response = JSON.parse(this.responseText);
+					document.getElementById("profile-image").setAttribute("src", response.data);
+				}
+			};
+			
+			var formData = new FormData(form);
+			formData.append("accessToken", localStorage.getItem("accessToken"));
+			ajax.send(formData);
+			
+			return false;
+		}	
+		
+		function doUpdateProfile(form){
+			form.submit.setAttribute("disabled", "disabled");
+			form.submit.innerHTML = "<span>Loading...</span>"
+			
+			var ajax= new XMLHttpRequest();
+			ajax.open("POST", "/updateProfile", true);
+			
+			ajax.onreadystatechange = function(){
+				if(this.readyState == 4 && this.status == 200){
+					form.submit.removeAttribute("disabled");
+					form.submit.innerHTML = "<span> Save</span>";
+					
+					var response = JSON.parse(this.responseText);
+					alert(response.message);
+				}
+			};
+			
+			var formData = new FormData(form);
+			formData.append("accessToken", localStorage.getItem("accessToken"));
+			ajax.send(formData);
+			
+			return false;			
+		}
+</script>
+
+    
+<%- include('./includes/footer') %>
+
+
