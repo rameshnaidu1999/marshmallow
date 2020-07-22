@@ -57,7 +57,7 @@ http.listen(5000, function(){
             res.render('signup');
         });
 
-        app.post('/signup', (req, res) => {
+        app.post('/signup', function(req, res) {
             var name = req.fields.name;
             var username = req.fields.username;
             var email = req.fields.email;
