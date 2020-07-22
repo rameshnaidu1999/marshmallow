@@ -1,79 +1,136 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-3 col-xl-3 col-md-10 mx-auto my-5" >
-            <div class="card card-body border-success rounded-2">
-                <div class="my-3">
-                    <h4 class=" text-success font-weight-bolder text-center"> <strong> Signup Form  </strong>  </h4>
-                    <form onsubmit="return doRegister(this)">
-                      <div class="form-group">
-                        <label for="exampleInputPassword1">FullName</label>
-                        <input type="text" placeholder="FullName" class="form-control border-success" name="name" required />
-                      </div>
+<!DOCTYPE html>
+<html lang="en">
 
-                      <div class="form-group">
-                        <label for="exampleInputPassword1">Username</label>
-                        <input type="text" placeholder="Username" class="form-control border-success" name="username" required />
-                      </div>
+<head>
 
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Email</label>
-                        <input type="email" class="form-control border-success" placeholder="Enter your Email" name="email" required />
-                      </div>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-                      <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" placeholder="Enter your password" class="form-control border-success" name="password" required />
-                      </div>
-                      <div class="form-radio">
-                          <div class="radio">
-                              <label>
-                                  <input type="radio" required name="gender" value="male" checked />
-                                  <i class="check-box"></i> male
-                              </label>
+  <title>Marshmallow-Blog</title>
+
+    <!-- Bootstrap core CSS -->
+  <link href="/public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/public/css/shards.min.css" />
+
+  <!-- Custom styles for this template -->
+  <link href="/public/css/blog-home.css" rel="stylesheet" />
+
+  <!-- Fontawesome Icons -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-xl-3 col-md-10 mx-auto my-5" >
+                <div class="card card-body border-success rounded-2">
+                    <div class="my-3">
+                        <h4 class=" text-success font-weight-bolder text-center"> 
+                          <strong> Signup Form  </strong>  
+                        </h4>
+                        <form onsubmit="return doRegister(this)">
+                          <div class="form-group">
+                            <label for="exampleInputPassword1">FullName</label>
+                            <input type="text" placeholder="FullName" 
+                              class="form-control border-success" 
+                              name="name" required />
                           </div>
-                          <div class="radio">
-                              <label>
-                                  <input type="radio" required name="gender" value="Female" checked />
-                                  <i class="check-box"></i> Female
-                              </label>
-                          </div>
-                      </div>
-
-                      <button type="submit" class="btn btn-success btn-block" name="submit"> <strong>SIGN UP</strong>  </button>
-                    </form>
-
-                    <div class="my-1">
-                      <a href="/login"> Already have an account? <span class="text-primary" >Login</span></a>
-                    </div>
-
-                </div>
-            </div>
-         </div>
-    </div>
-</div>
-
-<script>
-  function doRegister(form) {
-    form.submit.setAttribute("disabled", "disabled");
-    form.submit.innerHTML = "<span>Loading...</span>";
-
-    var ajax = new XMLHttpRequest();
-    ajax.open("POST", "/signup", true);
-    ajax.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200 ){
-        form.submit.removeAttribute("disabled");
-        form.submit.innerHTML = "<span>Register</span>";
-
-        var response = JSON.parse(this.responseText);
-        alert(response.message);
-
-        if(response.status == "success"){
-          window.location.href="/login";
-        }
-      }
-    }
-    ajax.send(new FormData(form));
-    return false;
     
-  }
-</script>
+                          <div class="form-group">
+                            <label for="exampleInputPassword1">Username</label>
+                            <input type="text" placeholder="Username" 
+                              class="form-control border-success" 
+                              name="username" required />
+                          </div>
+    
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">Email</label>
+                            <input type="email" class="form-control border-success" 
+                              placeholder="Enter your Email" 
+                              name="email" required />
+                          </div>
+    
+                          <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" placeholder="Enter your password" 
+                              class="form-control border-success" 
+                              name="password" required />
+                          </div>
+                          <div class="form-radio">
+                              <div class="radio">
+                                  <label>
+                                      <input type="radio" required name="gender" 
+                                        value="male" checked />
+                                      <i class="check-box"></i> male
+                                  </label>
+                              </div>
+                              <div class="radio">
+                                  <label>
+                                      <input type="radio" required name="gender" 
+                                        value="Female" checked />
+                                      <i class="check-box"></i> Female
+                                  </label>
+                              </div>
+                          </div>
+    
+                          <button type="submit" class="btn btn-success btn-block" name="submit"> 
+                            <strong>SIGN UP</strong>  
+                          </button>
+                        </form>
+    
+                        <div class="my-1">
+                          <a href="/login"> Already have an account? 
+                            <span class="text-primary" >Login</span>
+                          </a>
+                        </div>
+    
+                    </div>
+                </div>
+             </div>
+        </div>
+    </div>
+    
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="/public/vendor/jquery/jquery.min.js"></script>
+  <script src="/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script src="/public/js/shards.min.js"></script>
+  <script src="/public/js/socket.io.js"></script>
+
+  <script>
+      function doRegister(form) {
+        form.submit.setAttribute("disabled", "disabled");
+        form.submit.innerHTML = "<span>Loading...</span>";
+    
+        var ajax = new XMLHttpRequest();
+        ajax.open("POST", "/signup", true);
+        ajax.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200 ){
+            form.submit.removeAttribute("disabled");
+            form.submit.innerHTML = "<span>Register</span>";
+    
+            var response = JSON.parse(this.responseText);
+            alert(response.message);
+    
+            if(response.status == "success"){
+              window.location.href="/login";
+            }
+          }
+        }
+        ajax.send(new FormData(form));
+        return false;
+        
+      }
+  </script>
+</body>
+
+</html>
+
+
+

@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
-const expressLayouts = require('express-ejs-layouts');
+
+// const expressLayouts = require('express-ejs-layouts');
 const formidable = require('express-formidable');
 app.use(formidable());
 
@@ -15,9 +16,9 @@ const fileSystem = require("fs");
 var jwt = require("jsonwebtoken");
 var accessTokenSecret = "myAccessTokenSecret1234567890";
 
-app.use(expressLayouts);
+// app.use(expressLayouts);
 app.set('view engine', 'ejs');
-app.use(express.static(__dirname + '/public'));
+app.use("/public", express.static(__dirname+ "/public"));
 
 var socketIO = require("socket.io")(http);
 var socketID = "";
@@ -38,9 +39,6 @@ http.listen(5000, function(){
         var database = client.db("node_blog");
         console.log("Databse connected to node-blog.");
 
-        app.get('/', (req, res) => {
-            res.render("home")
-        });
 
         app.get('/home', (req, res) => {
             res.render('home');
@@ -100,7 +98,7 @@ http.listen(5000, function(){
                 } else {
                     res.json({
                         "status": "error",
-                        "message": "Email already exists."
+                        "message": "Email or username already exists."
                     })
                 }
             })
@@ -109,27 +107,6 @@ http.listen(5000, function(){
         app.get('/login', (req, res) => {
             res.render('login');
         });
-
-        //get User Details		
-		app.post("/getUser", function(request, result){
-			var accessToken = request.fields.accessToken;			
-			database.collection("users").findOne({
-				"accessToken": accessToken
-			}, function(error, user){
-				if(user == null){
-					result.json({
-						"status": "error",
-						"message": "user has been Logged out. Please login again."
-					});
-				} else{
-					result.json({
-						"status": "success",
-						"message": "Record has been fetched.",
-						"data": user
-					});
-				}
-			});
-		});
 
         app.post("/login", function(request, result){
             var email = request.fields.email;
@@ -172,8 +149,8 @@ http.listen(5000, function(){
             })
         });
 
-        app.get("/updateProfile", function(request, result){
-            result.render("updateProfile")
+        app.get("/updateProfile", function(req, res){
+            res.render("updateProfile");
         });
 
         //get User Details		
@@ -219,12 +196,12 @@ http.listen(5000, function(){
 						//previous cover photo remove
 						if(user.coverPhoto != ""){
 							fileSystem.unlink(user.coverPhoto, function(error){
-								
+								//
 							});
 						}
-						coverPhoto = "/public/images/" + new Date().getTime() + "-" + request.files.coverPhoto.name;
+						coverPhoto = "public/images/" + new Date().getTime() + "-" + request.files.coverPhoto.name;
 						fileSystem.rename(request.files.coverPhoto.path, coverPhoto, function(error){
-							
+							//
 						});
 						database.collection("users").updateOne({
 								"accessToken": accessToken

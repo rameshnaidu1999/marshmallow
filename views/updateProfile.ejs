@@ -1,49 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Marshmallow-Blog</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/public/css/shards.min.css" />
+
+  <!-- Custom styles for this template -->
+	<link href="/public/css/blog-home.css" rel="stylesheet" />
+	
+
+  <!-- Fontawesome Icons -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
+
+</head>
+
+<body>
+
 <%- include('./includes/header') %>
 <div class="container my-5">
-    <div class="row">
-        <div class="col-md-4">
-                <figure>
-					<img class="profile-image" id="profile-image" style="width:100%; height:150px; object-fit:cover;" />
-				</figure>
-                <form class="edit-photo" id="form-upload-image" onsubmit="return false;">
-                        <i class="fa fa-camera-retro"></i>
-                        <label class="fileContainer">
-                            Edit Display Photo
+	<!-- Heading Row -->
+	<div class="row align-items-center my-3">
+      <div class="col-lg-7">
+				  <figure>
+						<img class="cover-photo img-fluid rounded mb-4 mb-lg-0" id="cover-photo" />
+					</figure>
+					<form class="edit-phto" id="form-upload-image" onsubmit="return false;">
+							
+							<label class="fileContainer"> 
+								 <p class="btn btn-primary btn-pill mx-2"><i class="fa fa-camera-retro"></i> Edit cover Photo</p>	
+									<input type="file" accept="image/*" class="d-none" name="coverPhoto" onchange="uploadCoverPhoto();" required />
+							</label>
+							<input type="file" accept="image/*" class="d-none" name="coverPhoto" onchange="uploadCoverPhoto();" required />
+					</form>	
+      </div>
+      <!-- /.col-lg-8 -->
+      <div class="col-lg-5">
+					<figure>
+						<img class="profile-image img-thumbnail rounded mb-4 mb-lg-0" id="profile-image" />
+					</figure>
+					<form class="edit-phto" id="form-upload-image" onsubmit="return false;">
+							
+							<label class="fileContainer">
+								<p class="btn btn-success btn-pill mx-2"><i class="fa fa-camera-retro"></i> Edit Display Photo</p>
+								<input type="file" class="d-none" accept="image/*" name="profileImage" onchange="uploadImage();" required />	
 						</label>
-						<input type="file" accept="image/*" name="profileImage" onchange="uploadImage();" required />
-                </form>		
-        </div>
-        <div class="col-md-6">
-            <figure>
-				<img class="cover-photo" id="cover-photo" style="width:100%; height:700px; object-fit:cover;">
-			</figure>
-            <form class="edit-phto" id="form-cover-photo" onsubmit="return false;" >
-                <i class="fa fa-camera-retro"></i>
-				<label class="fileContainer"> 
-					Edit cover Photo
-				</label>
-				<input type="file" accept="image/*" name="coverPhoto" onchange="uploadCoverPhoto();" required />
-
-            </form>
-        </div>
-    </div>
-    <div class="row">
-            <div class="col-md-10">
-                    <div class="timeline-info">
-                        <ul>
-                            <li class="admin-name">
-                                <h5 class="user-name" style="padding-top:20px; padding-bottom:20px;"></h5>
-                            </li>
-                        </ul>							
-                    </div>
-            </div>
+					</form>
+        <h5 class="user-name font-weight-light mt-2"></h5>
+        <p>This is a template that is great for small businesses!</p>
+      </div>
+      <!-- /.col-md-4 -->
     </div>
     
 </div>
 
 <div class="container">
 		<div class="row">
-			<div class="col-lg-6 col-xl-6 col-md-10 mx-auto my-5" >
+			<div class="col-lg-7 col-xl-7 col-md-10 mx-auto my-5" >
 				<div class="card card-body border-success rounded-2">
 					<div class="my-3">
 						<h4 class=" text-success font-weight-bolder text-center"> <strong> Update Profile  </strong>  </h4>
@@ -51,41 +73,44 @@
 
 						  <div class="form-group">
 							<label for="exampleInputPassword1">FullName</label>
-							<input type="text"  class="form-control border-success" name="name" required />
-						  </div>
-
-						  <div class="form-group">
-							<label for="exampleInputPassword1">Username</label>
-							<input type="text"  class="form-control border-success" name="user-name" required />
+							<input type="text"  class="form-control border-success name" 
+								name="name" required />
 						  </div>
 
 						  <div class="form-group">
 							<label for="exampleInputEmail1">Email</label>
-							<input type="email" class="form-control border-success" name="email" required />
+							<input type="email" class="form-control border-success email" 
+								name="email" required />
 						  </div>
 
 						  <div class="form-group">
 							<label for="exampleInputEmail1">City</label>
-							<input type="text" class="form-control border-success" name="city" required />
+							<input type="text" class="form-control border-success city" 
+								name="city" required />
 						  </div>
 	
 						  <div class="form-group">
 							<label for="exampleInputEmail1">Country</label>
-							<input type="text" class="form-control border-success" name="country" required />
+							<input type="text" class="form-control border-success country" 
+								name="country" required />
 						  </div>
 
 						  <div class="form-group">
 							<label for="exampleInputEmail1">DOB</label>
-							<input type="date" class="form-control border-success"  name="dob" required />
+							<input type="date" class="dob form-control border-success"  
+								name="dob" required />
 						  </div>
 
 						  <div class="form-group">
-							<label for="exampleInputEmail1">About-me</label>
-							<input type="text" class="form-control border-success" name="about-me" required />
+							<label for="exampleInputEmail1">AboutMe</label>
+							<input type="text" class="aboutMe form-control border-success" 
+								name="aboutMe" required />
 						  </div>
 						  
 	
-						  <button type="submit" class="btn btn-success btn-block" name="submit"> <strong>SAVE</strong>  </button>
+						  <button type="submit" class="btn btn-success btn-block" name="submit"> 
+								<strong> SAVE </strong>  
+							</button>
 						</form>
 		
 					</div>
@@ -94,85 +119,103 @@
 		</div>
 </div>
 
-<script>
-		var isUpdateProfile = true;
-			function showProfileData(){
-				document.querySelector(".cover-photo").setAttribute("src", mainURL + "/" + window.user.coverPhoto);
-				document.querySelector(".profile-image").setAttribute("src", mainURL + "/" + window.user.profileImage);
-				document.querySelector(".user-name").innerHTML = window.user.name;
-				document.querySelector(".name").value = window.user.name;
-				document.querySelector(".email").value = window.user.email;
-				document.querySelector(".dob").value = window.user.dob;
-				document.querySelector(".city").value = window.user.city;
-				document.querySelector(".country").value = window.user.country;
-				document.querySelector(".aboutMe").value = window.user.aboutMe;
-			}showProfileData();
-			
-		function uploadCoverPhoto(form){
-			var form = document.getElementById("form-cover-photo");
-			
-			var ajax = new XMLHttpRequest();
-			ajax.open("POST", "/uploadCoverPhoto", true);
-			
-			ajax.onreadystatechange = function(){
-				if(this.readyState == 4 && this.status == 200){
-					var response = JSON.parse(this.responseText);
-					document.getElementById("cover-photo").setAttribute("src", response.data);
-				}
-			};
-			
-			var formData = new FormData(form);
-			formData.append("accessToken", localStorage.getItem("accessToken"));
-			ajax.send(formData);
-			
-			return false;
-		}
-		
-		function uploadImage(form){
-			var form = document.getElementById("form-upload-image");
-			
-			var ajax = new XMLHttpRequest();
-			ajax.open("POST", "/uploadProfileImage", true);
-			
-			ajax.onreadystatechange = function(){
-				if(this.readyState == 4 && this.status == 200){
+<%- include('./includes/footer') %>
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="/public/vendor/jquery/jquery.min.js"></script>
+  <script src="/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script src="/public/js/shards.min.js"></script>
+  <script src="/public/js/socket.io.js"></script>
+	
+
+
+	<script>
+			var isUpdateProfile = true;
+				function showProfileData() {
+					document.querySelector(".cover-photo").setAttribute("src", mainURL + "/" + window.user.coverPhoto);
+					document.querySelector(".profile-image").setAttribute("src", mainURL + "/" + window.user.profileImage);
+					document.querySelector(".user-name").innerHTML = window.user.name;
+					document.querySelector(".name").value = window.user.name;
+					document.querySelector(".email").value = window.user.email;
+					document.querySelector(".dob").value = window.user.dob;
+					document.querySelector(".city").value = window.user.city;
+					document.querySelector(".country").value = window.user.country;
+					document.querySelector(".aboutMe").value = window.user.aboutMe;
+				} showProfileData();
 				
-					var response = JSON.parse(this.responseText);
-					document.getElementById("profile-image").setAttribute("src", response.data);
-				}
-			};
+			function uploadCoverPhoto(form){
+				var form = document.getElementById("form-cover-photo");
+				
+				var ajax = new XMLHttpRequest();
+				ajax.open("POST", "/uploadCoverPhoto", true);
+				
+				ajax.onreadystatechange = function(){
+					if(this.readyState == 4 && this.status == 200){
+						var response = JSON.parse(this.responseText);
+						document.getElementById("cover-photo").setAttribute("src", response.data);
+					}
+				};
+				
+				var formData = new FormData(form);
+				formData.append("accessToken", localStorage.getItem("accessToken"));
+				ajax.send(formData);
+				
+				return false;
+			}
 			
-			var formData = new FormData(form);
-			formData.append("accessToken", localStorage.getItem("accessToken"));
-			ajax.send(formData);
-			
-			return false;
-		}	
-		
-		function doUpdateProfile(form){
-			form.submit.setAttribute("disabled", "disabled");
-			form.submit.innerHTML = "<span>Loading...</span>"
-			
-			var ajax= new XMLHttpRequest();
-			ajax.open("POST", "/updateProfile", true);
-			
-			ajax.onreadystatechange = function(){
-				if(this.readyState == 4 && this.status == 200){
-					form.submit.removeAttribute("disabled");
-					form.submit.innerHTML = "<span> Save</span>";
+			function uploadImage(form){
+				var form = document.getElementById("form-upload-image");
+				
+				var ajax = new XMLHttpRequest();
+				ajax.open("POST", "/uploadProfileImage", true);
+				
+				ajax.onreadystatechange = function(){
+					if(this.readyState == 4 && this.status == 200){
 					
-					var response = JSON.parse(this.responseText);
-					alert(response.message);
-				}
-			};
+						var response = JSON.parse(this.responseText);
+						document.getElementById("profile-image").setAttribute("src", response.data);
+					}
+				};
+				
+				var formData = new FormData(form);
+				formData.append("accessToken", localStorage.getItem("accessToken"));
+				ajax.send(formData);
+				
+				return false;
+			}	
 			
-			var formData = new FormData(form);
-			formData.append("accessToken", localStorage.getItem("accessToken"));
-			ajax.send(formData);
-			
-			return false;			
-		}
-</script>
+			function doUpdateProfile(form){
+				form.submit.setAttribute("disabled", "disabled");
+				form.submit.innerHTML = "<span>Loading...</span>"
+				
+				var ajax= new XMLHttpRequest();
+				ajax.open("POST", "/updateProfile", true);
+				
+				ajax.onreadystatechange = function(){
+					if(this.readyState == 4 && this.status == 200){
+						form.submit.removeAttribute("disabled");
+						form.submit.innerHTML = "<span> Save </span>";
+						
+						var response = JSON.parse(this.responseText);
+						alert(response.message);
+					}
+				};
+				
+				var formData = new FormData(form);
+				formData.append("accessToken", localStorage.getItem("accessToken"));
+				ajax.send(formData);
+				
+				return false;			
+			}
+	</script>
+
+</body>
+
+</html>
+
+
+
 
     
-<%- include('./includes/footer') %>

@@ -1,50 +1,66 @@
-<!-- Navigation -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Marshmallow-Blog</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/css/shards.min.css" />
+
+  <!-- Custom styles for this template -->
+  <link href="/css/blog-home.css" rel="stylesheet" />
+
+  <!-- Fontawesome Icons -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">Start Bootstrap</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        
-        <ul class="main-menu navbar-nav ml-auto" id="main-menu">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Home
-                  <span class="sr-only">(current)</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Search</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Chat</a>
-            </li>
-            <li class="nav-item btn-group">
-                <a class=" nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    settings
-                </a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/updateProfile">Profile</a>
-                    <a class="dropdown-item" href="/logout" onclick="return doLogout()">Logout</a>
-                    
-                </div>
-            </li>
-        </ul>
+        <div class="container">
+          <a class="navbar-brand" href="/home">Start Bootstrap</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            
+            <ul class="main-menu navbar-nav ml-auto" id="main-menu">
+            </ul>
 
-      </div>
-    </div>
-  </nav>
+            <ul class="setting-area">
+                
+            </ul>
+    
+          </div>
+        </div>
+    </nav>
+    
+    <script>
+        var mainURL = "http://localhost:5000";
+    </script>
 
-<script>
-    var mainURL = "http://localhost:5000";
-</script>
+    <style>
+        #post-img-preview,
+        #post-video-preview {
+            height: 300px;
+            width: 300px;
+            object-fit: cover;
+        }
+    </style>
 
-<style>
-    #post-img-preview,
-    #post-video-preview {
-        height: 300px;
-        width: 300px;
-        object-fit: cover;
-    }
-</style>
+
+
+
+
+
 

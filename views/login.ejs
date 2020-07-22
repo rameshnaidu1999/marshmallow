@@ -1,36 +1,71 @@
-<div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-3 col-xl-3 col-md-10 mx-auto my-5" >
-                <div class="card card-body border-success rounded-2">
-                    <div class="my-3">
-                        <h4 class=" text-success font-weight-bolder text-center"> <strong> Login Form  </strong>  </h4>
+<!DOCTYPE html>
+<html lang="en">
 
-                        <form onsubmit="return doLogin(this);">
+<head>
 
-                          <div class="form-group">
-                            <label for="exampleInputEmail1">Email</label>
-                            <input type="email" class="form-control border-success" placeholder="Enter your Email" name="email" required />
-                          </div>
-    
-                          <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" placeholder="Enter your password" class="form-control border-success" name="password" required />
-                          </div>
-                          
-                          <button name="submit" type="submit" class="btn btn-success btn-block"> <strong>LOGIN</strong> </button>
-                        </form>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-                        <div class="my-1">
-                          <a href="/signup"> Don't have an account yet? <span class="text-primary">Signup</span></a>
+  <title>Marshmallow-Blog</title>
+
+   <!-- Bootstrap core CSS -->
+   <link href="/public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+   <link rel="stylesheet" href="/public/css/shards.min.css" />
+ 
+   <!-- Custom styles for this template -->
+   <link href="/public/css/blog-home.css" rel="stylesheet" />
+
+  <!-- Fontawesome Icons -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
+
+</head>
+
+<body>
+
+        <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-3 col-xl-3 col-md-10 mx-auto my-5" >
+                        <div class="card card-body border-success rounded-2">
+                            <div class="my-3">
+                                <h4 class=" text-success font-weight-bolder text-center"> <strong> Login Form  </strong>  </h4>
+        
+                                <form onsubmit="return doLogin(this);">
+        
+                                  <div class="form-group">
+                                    <label for="exampleInputEmail1">Email</label>
+                                    <input type="email" class="form-control border-success" placeholder="Enter your Email" name="email" required />
+                                  </div>
+            
+                                  <div class="form-group">
+                                    <label for="exampleInputPassword1">Password</label>
+                                    <input type="password" placeholder="Enter your password" class="form-control border-success" name="password" required />
+                                  </div>
+                                  
+                                  <button name="submit" type="submit" class="btn btn-success btn-block"> <strong>LOGIN</strong> </button>
+                                </form>
+        
+                                <div class="my-1">
+                                  <a href="/signup"> Don't have an account yet? <span class="text-primary">Signup</span></a>
+                                </div>
+        
+                            </div>
                         </div>
-
-                    </div>
+                     </div>
                 </div>
-             </div>
         </div>
-    </div>
+    
 
-    <script>
+  <!-- Bootstrap core JavaScript -->
+  <script src="/public/vendor/jquery/jquery.min.js"></script>
+  <script src="/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script src="/public/js/shards.min.js"></script>
+  <script src="/public/js/socket.io.js"></script>
+
+  <script>
         function doLogin(form) {
             form.submit.setAttribute("disabled", "disabled");
             form.submit.innerHTML = "<span>Loading....</span>";
@@ -51,7 +86,7 @@
                         if(response.profileImage == "") {
                             window.location.href="/updateProfile";
                         } else {
-                            window.location.href = "/"
+                            window.location.href = "/home"
                         }
                     } else {
                         alert(response.message);
@@ -63,3 +98,9 @@
             return false;
         }
     </script>
+</body>
+
+</html>
+
+
+
